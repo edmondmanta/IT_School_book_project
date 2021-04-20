@@ -9,12 +9,33 @@ def add_book():
             'BookName','AuthorName','SharedWith','IsRead'
         ])
         writer.writerow({'BookName': book_name,
-                         'AuthorName': author_name
+                         'AuthorName': author_name,
+                         'SharedWith': 'None',
+                         'IsRead': False
                          })
     print('Book was added successfully ')
 
 def list_book():
-    print("List books option")
+    import csv
+    with open('booksDB.csv', mode='r') as file:
+        # Pasul 1 sa luam toate datele din DB
+        rows = csv.DictReader(file,fieldnames=[
+            'BookName','AuthorName','SharedWith','IsRead'
+        ])
+        # Parcurgem rand cu rand
+        for row in rows:
+            # pe o singura linie
+            print(
+                f"Book name is: {row.get('BookName')} "
+                f"Author name is: {row.get('AuthorName')} "
+                f"Is shared? {row.get('ShareWith')} "
+                f"Is read? {row.get('IsRead',False)}")
+            # rezultat pe mai multe linii
+            # print(f"Book name is: {row.get('BookName')}")
+            # print(f"Author Name is: {row.get('AuthorName')}")
+            # print(f"The book is shared with: {row.get('ShareWith')}")
+            # print(f"The book is read: {row.get('IsRead',False)}")
+
 def update_book():
     print("Update a book option")
 def share_book():
