@@ -30,7 +30,7 @@ def list_book():
                 f"Author name is: {row.get('AuthorName')} "
                 f"Is shared? {row.get('ShareWith')} "
                 f"Is read? {row.get('IsRead',False)}")
-            # rezultat pe mai multe linii
+        # rezultat pe mai multe linii
             # print(f"Book name is: {row.get('BookName')}")
             # print(f"Author Name is: {row.get('AuthorName')}")
             # print(f"The book is shared with: {row.get('ShareWith')}")
