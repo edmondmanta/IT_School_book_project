@@ -37,7 +37,32 @@ def list_book():
             # print(f"The book is read: {row.get('IsRead',False)}")
 
 def update_book():
-    print("Update a book option")
+    book_name = input("Enter book name: ")
+    book_read = input("Is the book read?(Y/N)?")
+    if book_read == 'Y':
+        book_read = True
+    else:
+        book_read = False
+    import csv
+    rows = []
+    with open('booksDB.csv', mode='r') as file:
+        # rows = list(csv.DictReader(file))
+        rows = list(csv.DictReader(file, fieldnames=("BookName", "AuthorName", "SharedWith", "IsRead")))
+        for row in rows:
+            if row["BookName"] == book_name:
+                row["IsRead"] = book_read
+                break
+        with open('booksDB.csv', mode='w') as file:
+            csv_writer = csv.DictWriter(file, fieldnames=[
+                "BookName", "AuthorName", "SharedWith", "IsRead"
+            ])
+            csv_writer.writerow({"BookName": row.get("BookName"),
+                                 "AuthorName": row.get("AuthorName"),
+                                 "SharedWith": row.get("SharedWith"),
+                                 "IsRead": book_read}
+                                )
+        print("Book was updated successfully")
+
 def share_book():
     print("Share a book option")
 
