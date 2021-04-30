@@ -102,6 +102,7 @@ print('2: List books')
 print('3: Update a book')
 print('4: Share a book')
 print('5: Delete all books')
+print('6: Quit')
 
 
 # while option != 5:
@@ -117,6 +118,8 @@ while True:
         share_book()
     elif option == 5:
         clear_csv()
+        break
+    elif option == 6:
         break
     else:
         print("Not a valid option")
